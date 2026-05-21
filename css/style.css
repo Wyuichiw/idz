@@ -1,0 +1,319 @@
+/* Підключаємо каліграфічний та різкий шрифти */
+@import url('https://fonts.googleapis.com/css2?family=Kelly+Slab&family=Marck+Script&display=swap');
+
+/* --- СВІТЛА ТЕМА (Я приду к тебе с клубникой в декабре) --- */
+:root {
+    --bg-color: #f4f1ea; 
+    --text-color: #1a365d; 
+    --accent-color: #d32f2f; 
+    --border-color: #8da3bd; 
+    
+    --font-main: 'Georgia', serif;
+    --font-heading: 'Marck Script', cursive;
+    
+    --cursor-core: rgba(211, 47, 47, 0.9);
+    --cursor-aura: rgba(211, 47, 47, 0.5);
+}
+
+/* --- ТЕМНА ТЕМА (Mea Maxima Culpa) --- */
+body.dark-theme {
+    --bg-color: #0a0a0a; 
+    --text-color: #e0e0e0; 
+    --accent-color: #a00000; 
+    --border-color: #555555;
+    
+    --font-main: 'Courier New', monospace;
+    --font-heading: 'Kelly Slab', sans-serif;
+    
+    --cursor-core: rgba(255, 255, 255, 0.9);
+    --cursor-aura: rgba(255, 255, 255, 0.4);
+}
+
+/* Базові налаштування + ФОН */
+body {
+    background-color: var(--bg-color);
+    background-image: linear-gradient(rgba(244, 241, 234, 0.65), rgba(244, 241, 234, 0.65)), url('../images/bg.png');
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center;
+    color: var(--text-color);
+    font-family: var(--font-main);
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+    cursor: none; 
+    
+    transition: background-color 0.8s ease, color 0.8s ease, background-image 0.8s ease, font-family 0.8s ease;
+}
+
+body.dark-theme {
+    background-image: linear-gradient(rgba(10, 10, 10, 0.7), rgba(10, 10, 10, 0.8)), url('../images/bg_dark.png');
+}
+
+/* ЕФЕКТ ВОГНИКА ЗА КУРСОРМ */
+#cursor-glow {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 12px;
+    height: 12px;
+    background-color: var(--cursor-core);
+    border-radius: 50%;
+    pointer-events: none; 
+    z-index: 9999; 
+    box-shadow: 0 0 20px 15px var(--cursor-aura);
+    transform: translate(-50%, -50%);
+    transition: background-color 0.8s ease, box-shadow 0.8s ease;
+}
+
+/* Хедер */
+header {
+    text-align: center;
+    padding: 2rem 1rem 0 1rem;
+    background-color: transparent;
+    border-bottom: none;
+}
+
+/* Стилізація заголовків */
+h1, h2, h3 {
+    font-family: var(--font-heading);
+    color: var(--accent-color);
+    font-weight: normal;
+    letter-spacing: 1px;
+    transition: color 0.8s ease, font-family 0.8s ease, transform 0.3s ease, letter-spacing 0.3s ease;
+}
+
+/* Каліграфія для світлої теми */
+body:not(.dark-theme) h1 { font-size: 3.5rem; }
+body:not(.dark-theme) h2 { font-size: 2.5rem; text-transform: none; }
+
+/* Зламаний стиль для темної теми */
+body.dark-theme h1, 
+body.dark-theme h2, 
+body.dark-theme h3 {
+    text-transform: uppercase; 
+    letter-spacing: 4px;       
+    font-weight: 900;
+    transform: skewX(-8deg);   
+}
+
+a, button {
+    cursor: none; 
+}
+
+a {
+    color: var(--text-color);
+    text-decoration: underline;
+    text-decoration-color: var(--accent-color);
+    font-weight: bold;
+    transition: color 0.3s;
+}
+
+a:hover {
+    color: var(--accent-color);
+}
+
+/* Секції */
+section {
+    max-width: 800px;
+    margin: 2rem auto;
+    padding: 0 2rem;
+    background-color: transparent;
+    border: none;
+    box-shadow: none;
+}
+
+/* Цитата */
+.quote {
+    font-style: italic;
+    border-left: 3px solid var(--accent-color);
+    padding-left: 1.5rem;
+    margin: 2rem 0;
+    color: var(--text-color);
+    background: transparent;
+}
+
+body.dark-theme .quote {
+    font-family: var(--font-main);
+    font-style: normal;
+}
+
+/* Таблиця */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1rem;
+    font-size: 0.95rem;
+}
+
+table th, table td {
+    border: 1px solid var(--border-color);
+    padding: 10px;
+    text-align: left;
+    background-color: transparent;
+}
+
+table th {
+    color: var(--accent-color);
+    font-family: var(--font-heading);
+    border-bottom: 2px solid var(--accent-color);
+}
+
+body.dark-theme table th {
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+
+/* РАМКИ ДЛЯ ФОТОГРАФІЙ     */
+.mood-item img, #slider-image {
+    box-sizing: border-box;
+    width: 100%;
+    height: 330px; 
+    object-fit: cover; 
+    
+    /* Відступ від краю (товщина рамки). Змінюй це число, якщо рамка занадто товста */
+    padding: 35px; 
+    
+    background-image: url('../images/frame-strawberry.png');
+    background-size: 100% 100%; 
+    background-position: center;
+    background-repeat: no-repeat;
+    
+    border: none;
+    background-color: transparent;
+    
+    filter: grayscale(10%);
+    transition: filter 0.3s ease, background-image 0.8s ease;
+}
+
+body.dark-theme .mood-item img, 
+body.dark-theme #slider-image {
+    background-image: url('../images/frame-rose.png');
+}
+
+#slider-image {
+    height: 430px; 
+    margin-bottom: 1.5rem;
+}
+
+.mood-item img:hover, #slider-image:hover {
+    filter: grayscale(0%);
+}
+
+/* СТИЛІ ГАЛЕРЕЇ ТА КНОПОК                  */
+
+.mood-gallery {
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+    flex-wrap: wrap;
+    margin-top: 1.5rem;
+}
+
+.mood-item {
+    text-align: center;
+    flex: 1;
+    min-width: 200px;
+}
+
+.slider-container {
+    text-align: center;
+    margin-top: 1.5rem;
+}
+
+.slider-controls {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+/* Кнопки */
+button {
+    background-color: transparent;
+    color: var(--text-color);
+    border: 1px solid var(--text-color);
+    padding: 10px 20px;
+    font-family: var(--font-heading);
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: all 0.3s ease, color 0.8s ease, border-color 0.8s ease;
+}
+
+button:hover {
+    color: var(--accent-color);
+    border-color: var(--accent-color);
+}
+
+#theme-toggle {
+    border-color: var(--accent-color);
+    color: var(--accent-color);
+    margin-top: 1rem;
+}
+
+#theme-toggle:hover {
+    color: var(--bg-color);
+    background-color: var(--accent-color);
+}
+
+body.dark-theme button {
+    letter-spacing: 2px;
+    transform: skewX(-8deg);
+}
+
+/* СТИЛІЗАЦІЯ ДЛЯ "Ім'я", "Email"  */
+strong {
+    font-family: var(--font-heading);
+    color: var(--accent-color);
+    font-weight: normal;
+    display: inline-block;
+    margin-right: 5px;
+    transition: color 0.8s ease, font-family 0.8s ease, transform 0.3s ease, letter-spacing 0.3s ease;
+}
+
+body:not(.dark-theme) strong {
+    font-size: 1.6rem;
+}
+
+body.dark-theme strong {
+    font-size: 1.1rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    transform: skewX(-8deg);
+}
+
+#about p:first-of-type {
+    font-size: 1.2rem;
+}
+/* --- АДАПТИВНІСТЬ ДЛЯ ТЕЛЕФОНІВ ТА ПЛАНШЕТІВ --- */
+@media (max-width: 768px) {
+    body:not(.dark-theme) h1 { font-size: 2.5rem; }
+    body.dark-theme h1 { font-size: 2rem; }
+    
+    header { padding: 1.5rem 1rem 0 1rem; }
+    section { padding: 0 1rem; }
+    
+    /* Таблиця буде прокручуватися вбік на телефоні */
+    section#education {
+        overflow-x: auto;
+    }
+    
+    table {
+        min-width: 500px; 
+    }
+
+    /* Зменшуємо фотографії та відступи рамок для телефону */
+    .mood-item img, #slider-image {
+        height: 250px;
+        padding: 20px; 
+    }
+    #slider-image {
+        height: 300px;
+    }
+    
+    /* Зменшуємо 3D-модель для телефону */
+    .sketchfab-embed-wrapper iframe {
+        height: 300px !important;
+    }
+}
