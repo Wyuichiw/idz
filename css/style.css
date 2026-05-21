@@ -317,3 +317,45 @@ body.dark-theme strong {
         height: 300px !important;
     }
 }
+/* --------------------------------------------------- */
+/* АУДІОПЛЕЄР                                          */
+/* --------------------------------------------------- */
+#audio-controls {
+    margin-top: 1.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+}
+
+#play-pause-btn {
+    font-size: 0.9rem;
+    padding: 8px 15px;
+}
+
+/* Стилізація повзунка гучності */
+#volume-slider {
+    -webkit-appearance: none;
+    width: 100px;
+    height: 4px;
+    background: var(--text-color);
+    border-radius: 2px;
+    outline: none;
+    cursor: none; /* Щоб діяв наш вогник */
+    transition: background 0.8s ease, box-shadow 0.3s ease;
+}
+
+#volume-slider:hover {
+    box-shadow: 0 0 10px var(--glow-color);
+}
+
+#volume-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    background: var(--accent-color);
+    cursor: none;
+    box-shadow: 0 0 10px var(--glow-color);
+}

@@ -47,11 +47,61 @@ prevBtn.addEventListener('click', function() {
     }
     updateSlider();
 });
-// --- 3. МАГІЧНИЙ ВОГНИК ЗА КУРСОРМ ---
+// 3.  ВОГНИК ЗА КУРСОРМ 
 const cursorGlow = document.getElementById('cursor-glow');
 
 document.addEventListener('mousemove', function(e) {
     // Отримуємо координати мишки і передаємо їх нашому вогнику
     cursorGlow.style.left = e.clientX + 'px';
     cursorGlow.style.top = e.clientY + 'px';
+});
+
+// --- 4. АУДІОПЛЕЄР ТА МУЗИКА НА ФОНІ ---
+const bgMusic = document.getElementById('bg-music');
+const playPauseBtn = document.getElementById('play-pause-btn');
+const volumeSlider = document.getElementById('volume-slider');
+// Кнопка зміни теми в тебе вже є в коді вище, тому просто знайдемо її знову для музики
+const themeBtn = document.getElementById('theme-toggle'); 
+
+// Шляхи до твоїх пісень
+const lightTrack = 'audio/light.mp3';
+const darkTrack = 'audio/dark.mp3';
+
+let isPlaying = false;
+
+// Вмикання / Вимикання музики
+playPauseBtn.addEventListener('click', function() {
+    if (isPlaying) {
+        bgMusic.pause();
+        playPauseBtn.textContent = '🎵 Увімкнути музику';
+    } else {
+        bgMusic.play();
+        playPauseBtn.textContent = '⏸ Вимкнути музику';
+    }
+    isPlaying = !isPlaying;
+});
+
+// Зміна гучності
+volumeSlider.addEventListener('input', function(e) {
+    bgMusic.volume = e.target.value;
+});
+
+// Перемикання треку разом зі зміною теми
+themeBtn.addEventListener('click', function() {
+    // Перевіряємо, чи грає музика зараз
+    const wasPlaying = isPlaying;
+    
+    // Чекаємо мілісекунду, поки клас теми точно зміниться на body
+    setTimeout(() => {
+        if (document.body.classList.contains('dark-theme')) {
+            bgMusic.src = darkTrack;
+        } else {
+            bgMusic.src = lightTrack;
+        }
+        
+        // Якщо музика грала до перемикання теми, продовжуємо її грати
+        if (wasPlaying) {
+            bgMusic.play();
+        }
+    }, 50);
 });
