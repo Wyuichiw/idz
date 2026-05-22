@@ -60,10 +60,9 @@ document.addEventListener('mousemove', function(e) {
 const bgMusic = document.getElementById('bg-music');
 const playPauseBtn = document.getElementById('play-pause-btn');
 const volumeSlider = document.getElementById('volume-slider');
-// Кнопка зміни теми в тебе вже є в коді вище, тому просто знайдемо її знову для музики
 const themeBtn = document.getElementById('theme-toggle'); 
 
-// Шляхи до твоїх пісень
+// Шляхи до пісень
 const lightTrack = 'audio/light.mp3';
 const darkTrack = 'audio/dark.mp3';
 
